@@ -13,3 +13,6 @@ jobs:
       - uses: hacs/action@main
         with:
           category: plugin
+          # A README screenshot is only required for the HACS default store.
+          # Remove this line once the README shows a card image.
+          ignore: images
