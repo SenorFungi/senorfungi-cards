@@ -7,14 +7,27 @@ export interface HassEntity {
   last_updated: string;
 }
 
+export interface HassUser {
+  id: string;
+  name: string;
+  is_admin: boolean;
+  is_owner: boolean;
+}
+
+export interface HassConnection {
+  subscribeEvents<T = any>(
+    callback: (event: T) => void,
+    eventType?: string,
+  ): Promise<() => Promise<void>>;
+}
+
 export interface HomeAssistant {
   states: Record<string, HassEntity>;
   language: string;
-  callService(
-    domain: string,
-    service: string,
-    data?: Record<string, any>,
-  ): Promise<unknown>;
+  user?: HassUser;
+  connection: HassConnection;
+  callWS<T = unknown>(msg: { type: string; [key: string]: any }): Promise<T>;
+  callService(domain: string, service: string, data?: Record<string, any>): Promise<unknown>;
   formatEntityState?(stateObj: HassEntity, state?: string): string;
 }
 

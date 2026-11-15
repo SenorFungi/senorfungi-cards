@@ -1,7 +1,8 @@
 // Entry point: import every card here so it ends up in the bundle.
 import "./cards/hello-card/hello-card";
+import "./cards/matter-pairing-card/matter-pairing-card";
 
-const VERSION = "0.1.0";
+const VERSION = "0.2.0";
 
 console.info(
   `%c SENORFUNGI-CARDS %c ${VERSION} `,
